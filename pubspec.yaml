@@ -1,6 +1,6 @@
 name: uts_sidemenu
-description: A sidemenu for Flutter that goes under the Scaffold. You can choose horizontal or vertical direction and left or right support (only for horizontal direction), duration, curve and more.
-version: 1.0.0
+description: A sidemenu for Flutter that goes under the Scaffold. You can choose horizontal or vertical direction and left or right support (only for horizontal direction)
+version: 1.0.1
 author: Gabriele Ciccoentti <gab.0@hotmail.it>
 homepage: https://github.com/GabrieleCicconetti/uts_sidemenu
 
