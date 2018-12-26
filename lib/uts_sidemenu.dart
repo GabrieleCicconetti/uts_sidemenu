@@ -61,21 +61,21 @@ class UTSSideMenu extends StatefulWidget {
 
   UTSSideMenu(
       {@required this.body,
-        @required this.menuBody,
-        appBar,
-        @required menuSize,
-        this.duration = 500,
-        this.direction = UTSDirection.horizontal,
-        this.mode = UTSMode.right,
-        this.isBackdropDisabled = false,
-        this.isPanDisabled = false,
-        this.menuFriction = 0.0,
-        this.curve = Curves.fastOutSlowIn,
-        this.shadow,
-        this.onOpen,
-        this.onClose,
-        this.onSlide,
-        this.onStateChange})
+      @required this.menuBody,
+      appBar,
+      @required menuSize,
+      this.duration = 500,
+      this.direction = UTSDirection.horizontal,
+      this.mode = UTSMode.right,
+      this.isBackdropDisabled = false,
+      this.isPanDisabled = false,
+      this.menuFriction = 0.0,
+      this.curve = Curves.fastOutSlowIn,
+      this.shadow,
+      this.onOpen,
+      this.onClose,
+      this.onSlide,
+      this.onStateChange})
       : this.appBar = appBar,
         assert(menuSize >= 0.0 &&
             menuSize <= 1.0 &&
@@ -126,10 +126,6 @@ class UTSSideMenuState extends State<UTSSideMenu>
     });
     _initMenuAnimations();
 
-
-
-
-
     print(_getInitialMenu(2));
     print(_getInitialMenu(4));
     print(_getInitialMenu(1));
@@ -149,7 +145,6 @@ class UTSSideMenuState extends State<UTSSideMenu>
     _canPan = false;
     _isOpened = false;
     _opacityStart = 0.2;
-
 
     MenuNotifier.notify.setMenuToggle(() {
       this._toggle();
@@ -186,21 +181,15 @@ class UTSSideMenuState extends State<UTSSideMenu>
             _backDropOpacity = _controller.value - (1.0 - _maxBackDropOpacity);
           }
           _position = _animation.value;
-          if (widget.direction == UTSDirection.horizontal &&
-              widget.mode == UTSMode.right || widget.direction == UTSDirection.vertical) {
-            _initialMenuPosition =
-                ((_position / _menuSize) * _menuPosition) - _menuPosition;
-          } else if (widget.direction == UTSDirection.horizontal &&
-              widget.mode == UTSMode.left) {
-            _initialMenuPosition =
-                ((_position / _menuSize) * _menuPosition) - _menuPosition;
-          }
+
+          _initialMenuPosition =
+              ((_position / _menuSize) * _menuPosition) - _menuPosition;
         });
 
         if (widget.onSlide != null) widget.onSlide(_position);
       })
       ..addStatusListener(
-            (status) {
+        (status) {
           if (widget.onStateChange != null) widget.onStateChange(status);
 
           if (status == AnimationStatus.dismissed) {
@@ -265,77 +254,76 @@ class UTSSideMenuState extends State<UTSSideMenu>
 
   double _getInitialMenu(int pos) {
     switch (pos) {
-    //top
+      //top
       case 1:
         return widget.direction == UTSDirection.vertical
             ? _initialMenuPosition
             : 0.0;
         break;
-    //right
+      //right
       case 2:
         return widget.direction == UTSDirection.horizontal &&
-            widget.mode == UTSMode.right
+                widget.mode == UTSMode.right
             ? _initialMenuPosition
             : widget.direction == UTSDirection.horizontal &&
-            widget.mode == UTSMode.left
-            ? (MediaQuery.of(context).size.width - _menuSize) - _initialMenuPosition
-            : 0.0;
-    //bottom
+                    widget.mode == UTSMode.left
+                ? (MediaQuery.of(context).size.width - _menuSize) -
+                    _initialMenuPosition
+                : 0.0;
+      //bottom
       case 3:
         return widget.direction == UTSDirection.vertical
             ? MediaQuery.of(context).size.height -
-            _menuSize -
-            _initialMenuPosition
+                _menuSize -
+                _initialMenuPosition
             : 0.0;
         break;
-    //left
+      //left
       case 4:
         return widget.direction == UTSDirection.horizontal &&
-            widget.mode == UTSMode.right
+                widget.mode == UTSMode.right
             ? MediaQuery.of(context).size.width -
-            _menuSize -
-            _initialMenuPosition
+                _menuSize -
+                _initialMenuPosition
             : widget.direction == UTSDirection.horizontal &&
-            widget.mode == UTSMode.left
-            ? _initialMenuPosition
-            : 0.0;
+                    widget.mode == UTSMode.left
+                ? _initialMenuPosition
+                : 0.0;
         break;
       default:
         return 0.0;
     }
-
-
   }
 
   double _getMainBodyPosition(int pos) {
     switch (pos) {
-    //top
+      //top
       case 1:
         return widget.direction == UTSDirection.vertical ? _position : 0;
         break;
-    //right
+      //right
       case 2:
         return widget.direction == UTSDirection.horizontal &&
-            widget.mode == UTSMode.right
+                widget.mode == UTSMode.right
             ? _position
             : widget.direction == UTSDirection.horizontal &&
-            widget.mode == UTSMode.left
-            ? -_position
-            : 0;
+                    widget.mode == UTSMode.left
+                ? -_position
+                : 0;
         break;
-    //bottom
+      //bottom
       case 3:
         return widget.direction == UTSDirection.vertical ? -_position : 0;
         break;
-    //left
+      //left
       case 4:
         return widget.direction == UTSDirection.horizontal &&
-            widget.mode == UTSMode.right
+                widget.mode == UTSMode.right
             ? -_position
             : widget.direction == UTSDirection.horizontal &&
-            widget.mode == UTSMode.left
-            ? _position
-            : 0;
+                    widget.mode == UTSMode.left
+                ? _position
+                : 0;
         break;
       default:
         return 0.0;
@@ -415,11 +403,11 @@ class UTSSideMenuState extends State<UTSSideMenu>
                       boxShadow: [
                         widget.shadow == null
                             ? BoxShadow(
-                          color: Colors.black.withAlpha(70),
-                          offset: Offset(3.0, 0),
-                          spreadRadius: 3.0,
-                          blurRadius: 15.0,
-                        )
+                                color: Colors.black.withAlpha(70),
+                                offset: Offset(3.0, 0),
+                                spreadRadius: 3.0,
+                                blurRadius: 15.0,
+                              )
                             : widget.shadow
                       ],
                     ),
@@ -431,7 +419,7 @@ class UTSSideMenuState extends State<UTSSideMenu>
                   right: 0,
                   top: widget.appBar != null
                       ? (widget.appBar.preferredSize.height +
-                      MediaQuery.of(context).padding.top)
+                          MediaQuery.of(context).padding.top)
                       : MediaQuery.of(context).padding.top,
                   bottom: 0,
                   child: AnimatedOpacity(
