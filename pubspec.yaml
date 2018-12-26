@@ -1,8 +1,8 @@
 name: uts_sidemenu
 description: A sidemenu for Flutter that goes under the Scaffold.
 version: 0.0.1
-author:
-homepage:
+author: Gabriele Ciccoentti <gab.0@hotmail.it>
+homepage: https://github.com/GabrieleCicconetti/uts_sidemenu
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
