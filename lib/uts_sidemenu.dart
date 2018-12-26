@@ -1,5 +1,3 @@
-library uts_sidemenu;
-
 import 'package:flutter/material.dart';
 
 enum UTSDirection { horizontal, vertical }
@@ -189,7 +187,7 @@ class UTSSideMenuState extends State<UTSSideMenu>
           }
           _position = _animation.value;
           if (widget.direction == UTSDirection.horizontal &&
-              widget.mode == UTSMode.right) {
+              widget.mode == UTSMode.right || widget.direction == UTSDirection.vertical) {
             _initialMenuPosition =
                 ((_position / _menuSize) * _menuPosition) - _menuPosition;
           } else if (widget.direction == UTSDirection.horizontal &&
@@ -197,7 +195,6 @@ class UTSSideMenuState extends State<UTSSideMenu>
             _initialMenuPosition =
                 ((_position / _menuSize) * _menuPosition) - _menuPosition;
           }
-          print(_initialMenuPosition);
         });
 
         if (widget.onSlide != null) widget.onSlide(_position);
@@ -454,4 +451,3 @@ class UTSSideMenuState extends State<UTSSideMenu>
     );
   }
 }
-
